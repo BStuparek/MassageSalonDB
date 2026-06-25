@@ -47,7 +47,7 @@
 
 <sql:query var="masseure" sql="SELECT m.SV_Nummer, p.Vorname, p.Nachname, m.Qualifikation FROM Masseur m JOIN Person p ON m.SV_Nummer = p.SVNr" />
 
-<form method="POST" action="jsp4.jsp">
+<form method="POST" action="identifikation.jsp">
 
     <h3>Welcher Masseur soll die Behandlung durchführen?</h3>
     <div class="grid">
