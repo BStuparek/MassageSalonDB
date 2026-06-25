@@ -41,12 +41,10 @@
     <sql:param value="${sessionScope.sessionMTypID}" />
 </sql:query>
 
-<form method="POST" action="masseur.jsp">
+<form method="POST" action="jsp3.jsp">
 
     <h3>Wunschdatum festlegen:</h3>
     <input type="date" name="datum" class="date-picker" required>
-    <input type="hidden" name="zeit" id="hiddenZeit">
-    <input type="hidden" name="raum" id="hiddenRaum">
 
     <h3>Verfügbare Uhrzeiten:</h3>
     <c:choose>
@@ -57,12 +55,7 @@
             <div class="grid">
                 <c:forEach var="term" items="${termine.rows}">
                     <div class="toggle-card">
-                        <input type="radio" name="terminAuswahl"
-                               id="t_${term.Tageszeit}_${term.Raumcodierung}"
-                               data-zeit="${term.Tageszeit}"
-                               data-raum="${term.Raumcodierung}"
-                               onclick="document.getElementById('hiddenZeit').value=this.dataset.zeit; document.getElementById('hiddenRaum').value=this.dataset.raum;"
-                               required>
+                        <input type="radio" name="terminAuswahl" id="t_${term.Tageszeit}_${term.Raumcodierung}" value="${term.Tageszeit},${term.Raumcodierung}" required>
                         <label for="t_${term.Tageszeit}_${term.Raumcodierung}" class="card-label">
                             <h3 style="margin-top:0;">${term.Tageszeit} Uhr</h3>
                             <span style="color: #666; font-size: 0.9em;">Raum: ${term.Raumcodierung} <br>(${term.Raumbeschreibung})</span>

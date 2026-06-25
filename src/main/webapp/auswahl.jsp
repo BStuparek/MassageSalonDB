@@ -35,12 +35,12 @@
 
 <sql:query var="typen" sql="SELECT DISTINCT t.MTypID, t.Beschreibung, t.Dauer, t.Kosten FROM Massagetyp t INNER JOIN Massage m ON t.MTypID = m.MTypID" />
 
-<form method="POST" action="zeitraum.jsp">
+<form method="POST" action="jsp2.jsp">
     <div class="grid">
         <c:forEach var="t" items="${typen.rows}">
             <div class="toggle-card">
-                <input type="radio" name="mTypID" id="m_${t.MTypID}" value="${t.MTypID}" required>
-                <label for="m_${t.MTypID}" class="card-label">
+                <input type="radio" name="mTypID" id="m\_${t.MTypID}" value="${t.MTypID}" required>
+                <label for="m\_${t.MTypID}" class="card-label">
                     <h3>${t.Beschreibung}</h3>
                     <p>Dauer: ${t.Dauer} Min.</p>
                     <div class="price">${t.Kosten} €</div>
