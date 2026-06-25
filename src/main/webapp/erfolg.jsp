@@ -16,8 +16,6 @@
     </style>
 </head>
 <body>
-
-<%-- Werte VOR session.invalidate() sichern, sonst sind sie weg --%>
 <c:set var="success" value="${sessionScope.bookingSuccess}" />
 <c:set var="errorMsg" value="${sessionScope.bookingError}" />
 
@@ -43,7 +41,6 @@
 <a href="auswahl.jsp" class="btn-home">Zurück zur Startseite</a>
 
 <%
-    // Session zerstören, wie laut Ablaufbeschreibung gefordert
     session.invalidate();
 %>
 

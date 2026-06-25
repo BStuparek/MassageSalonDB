@@ -9,14 +9,11 @@
         body { font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; color: #333; }
         h1, h3 { color: #2b7a78; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
-
-        /* Toggle-Button Styling */
         .toggle-card { position: relative; }
         .toggle-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
         .card-label { display: block; padding: 15px; background: white; border: 2px solid #ddd; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; }
         .card-label:hover { border-color: #aaa; background: #f0f0f0; }
         .toggle-card input[type="radio"]:checked + .card-label { border-color: #2b7a78; background: #def2f1; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-
         .date-picker { margin: 10px 0 20px 0; padding: 10px; font-size: 16px; border: 2px solid #ddd; border-radius: 5px; width: 100%; max-width: 300px; }
         .btn-next { margin-top: 30px; padding: 12px 25px; background: #2b7a78; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
         .btn-next:hover { background: #17252a; }
@@ -45,8 +42,6 @@
 
     <h3>Wunschdatum festlegen:</h3>
     <input type="date" name="datum" class="date-picker" required>
-
-    <!-- Diese zwei Felder tragen die echten, getrennten Werte -->
     <input type="hidden" name="zeit" id="hiddenZeit">
     <input type="hidden" name="raum" id="hiddenRaum">
 

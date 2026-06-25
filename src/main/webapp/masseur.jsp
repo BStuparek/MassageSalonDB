@@ -2,17 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-<%--
-  Da zeitraum.jsp das Formular mit POST abschickt, fangen wir die Werte
-  hier robust ab und sichern sie direkt im Session-Scope ab.
---%>
 <%
     if (request.getParameter("datum") != null) {
         session.setAttribute("sessionDatum", request.getParameter("datum"));
         session.setAttribute("sessionZeit", request.getParameter("zeit"));
         session.setAttribute("sessionRaum", request.getParameter("raum"));
-
-        // Kombinierter String für die Abwärtskompatibilität mit Seite 4
         String combined = request.getParameter("zeit") + "," + request.getParameter("raum");
         session.setAttribute("sessionTermin", combined);
     }
