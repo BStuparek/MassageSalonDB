@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS Kunde_für_Massage_bei_Masseur_vorgemerkt (
     SVNr_Kunde VARCHAR(10),
     Datum DATE,
     PRIMARY KEY (MTypID, Tageszeit, Raumcodierung, SVNr_Masseur, SVNr_Kunde, Datum),
-    FOREIGN KEY (MTypID, Tageszeit) REFERENCES Massage_mit_Sachbearbeiter_und_Raum(MTypID, Tageszeit) ON DELETE CASCADE,
+    FOREIGN KEY (MTypID, Tageszeit, Raumcodierung) REFERENCES koordinieren(MTypID, Tageszeit, Raumcodierung) ON DELETE CASCADE,
     FOREIGN KEY (SVNr_Masseur) REFERENCES Masseur(SV_Nummer) ON DELETE CASCADE,
     FOREIGN KEY (SVNr_Kunde) REFERENCES Kunde(SVNr) ON DELETE CASCADE
     );

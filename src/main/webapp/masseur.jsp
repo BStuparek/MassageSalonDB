@@ -2,16 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-<%
-    if (request.getParameter("datum") != null) {
-        session.setAttribute("sessionDatum", request.getParameter("datum"));
-        session.setAttribute("sessionZeit", request.getParameter("zeit"));
-        session.setAttribute("sessionRaum", request.getParameter("raum"));
-        String combined = request.getParameter("zeit") + "," + request.getParameter("raum");
-        session.setAttribute("sessionTermin", combined);
-    }
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +21,13 @@
     </style>
 </head>
 <body>
+
+<c:if test="${not empty param.datum}">
+    <c:set var="sessionDatum" value="${param.datum}" scope="session" />
+    <c:set var="sessionZeit" value="${param.zeit}" scope="session" />
+    <c:set var="sessionRaum" value="${param.raum}" scope="session" />
+    <c:set var="sessionTermin" value="${param.zeit},${param.raum}" scope="session" />
+</c:if>
 
 <h1>Schritt 3: Masseur auswählen</h1>
 

@@ -6,12 +6,10 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="javax.naming.InitialContext" %>
 
-<%-- Schritt A: Masseur-Auswahl aus dem POST-Parameter der vorherigen Seite in die Session übernehmen --%>
 <c:if test="${not empty param.svnrMasseur}">
     <c:set var="sessionMasseur" value="${param.svnrMasseur}" scope="session" />
 </c:if>
 
-<%-- Schritt B: Falls das Formular abgesendet wurde (Kunde hat seine SVNr eingegeben) --%>
 <c:if test="${not empty param.svnrKunde}">
     <%
         boolean success = false;
@@ -33,8 +31,6 @@
 
                     try (PreparedStatement ps = conn.prepareStatement(sql)) {
                         ps.setString(1, (String) session.getAttribute("sessionMTypID"));
-
-                        // Erzwingt die korrekte Formatierung als SQL-TIME-Objekt (hh:mm:ss)
                         java.sql.Time sqlZeit = java.sql.Time.valueOf(tageszeitStr);
                         ps.setTime(2, sqlZeit);
 
@@ -57,8 +53,6 @@
             success = false;
             errorMsg = "Systemfehler: " + e.getMessage();
         }
-
-        // Ergebnis im Session-Scope für seite 5 ablegen
         session.setAttribute("bookingSuccess", success);
         session.setAttribute("bookingError", errorMsg);
     %>
