@@ -19,10 +19,7 @@
             DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/MassagesalonDB");
 
             String terminCombined = (String) session.getAttribute("sessionTermin");
-            if (terminCombined != null && terminCombined.contains(",")) {
-                String[] terminParts = terminCombined.split(",");
-                String tageszeitStr = terminParts[0];
-                String raumcodierung = terminParts[1];
+            if (terminCombined != null) {
 
                 try (Connection conn = ds.getConnection()) {
                     String sql = "INSERT INTO Kunde_für_Massage_bei_Masseur_vorgemerkt " +
@@ -31,10 +28,10 @@
 
                     try (PreparedStatement ps = conn.prepareStatement(sql)) {
                         ps.setString(1, (String) session.getAttribute("sessionMTypID"));
-                        java.sql.Time sqlZeit = java.sql.Time.valueOf(tageszeitStr);
+                        java.sql.Time sqlZeit = java.sql.Time.valueOf((String) session.getAttribute("sessionZeit"));
                         ps.setTime(2, sqlZeit);
 
-                        ps.setString(3, raumcodierung);
+                        ps.setString(3, (String) session.getAttribute("sessionRaum"));
                         ps.setString(4, (String) session.getAttribute("sessionMasseur"));
                         ps.setString(5, request.getParameter("svnrKunde"));
                         ps.setString(6, (String) session.getAttribute("sessionDatum"));
@@ -89,7 +86,7 @@
 
 <form method="POST" action="identifikation.jsp">
     <h3>Bitte geben Sie Ihre SV-Nummer ein, um den Termin verbindlich zu buchen:</h3>
-    <input type="text" name="svnrKunde" required maxlength="10" placeholder="z.B. 1234230905">
+    <input type="text" name="svnrKunde" required maxlength="10" placeholder="z.B. 1234567890">
     <br>
     <button type="submit" class="btn-submit">Termin verbindlich buchen ➔</button>
 </form>
